@@ -101,6 +101,7 @@ for os_name in ${OS}; do
         # variant 1: https://github.com/conventionalcommit/commitlint/releases
         VARIANTS="${os_name}-${arch_name}"
         # variant 2: https://github.com/dprint/dprint/releases
+        # variant 2: https://github.com/crate-ci/typos/releases
         VARIANTS="${VARIANTS} ${arch_name}-${vendor_name}-${os_name}${linux_suffix}"
         # variant 3: https://github.com/biomejs/biome/releases
         VARIANTS="${VARIANTS} ${os_name}-${arch_name}"
