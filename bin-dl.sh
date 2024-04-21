@@ -10,7 +10,7 @@ BINARY_SUFFIX=""
 
 case "$(uname)" in
 Darwin)
-  OS="darwin"
+  OS="darwin macos"
   VENDOR="apple"
   ;;
 Linux)
@@ -92,37 +92,38 @@ for os_name in ${OS}; do
         linux_suffix=""
 
         if [ "$os_name" = "linux" ]; then
-          linux_suffix="-$linux_std"
+          linux_suffix="[-_]$linux_std"
         fi
 
         VARIANTS=""
 
         # variant 1: https://github.com/jqlang/jq/releases
         # variant 1: https://github.com/conventionalcommit/commitlint/releases
-        VARIANTS="${os_name}-${arch_name}"
+        # variant 1: https://github.com/evilmartians/lefthook/releases
+        VARIANTS="${os_name}[-_]${arch_name}"
         # variant 2: https://github.com/dprint/dprint/releases
         # variant 2: https://github.com/crate-ci/typos/releases
-        VARIANTS="${VARIANTS} ${arch_name}-${vendor_name}-${os_name}${linux_suffix}"
+        VARIANTS="${VARIANTS} ${arch_name}[-_]${vendor_name}[-_]${os_name}${linux_suffix}"
         # variant 3: https://github.com/biomejs/biome/releases
-        VARIANTS="${VARIANTS} ${os_name}-${arch_name}"
+        VARIANTS="${VARIANTS} ${os_name}[-_]${arch_name}"
         # variant 4: https://github.com/oxc-project/oxc/releases
-        VARIANTS="${VARIANTS} ${os_name}-${arch_name}${linux_suffix}"
+        VARIANTS="${VARIANTS} ${os_name}[-_]${arch_name}${linux_suffix}"
         # variant 5: https://github.com/jsona/jsona/releases
         # variant 5: https://github.com/KeisukeYamashita/commitlint-rs/releases
-        VARIANTS="${VARIANTS} ${arch_name}-${vendor_name}-${os_name}${linux_suffix}"
+        VARIANTS="${VARIANTS} ${arch_name}[-_]${vendor_name}[-_]${os_name}${linux_suffix}"
 
         for PLATFORM_VARIANTS in ${VARIANTS}; do
           if [ -n "${binary_version}" ]; then
-            VARIANT_WITH_NAMES="${binary_name}-${binary_version}-${PLATFORM_VARIANTS} ${binary_name}-${PLATFORM_VARIANTS}"
+            VARIANT_WITH_NAMES="${binary_name}[-_]${binary_version}[-_]${PLATFORM_VARIANTS} ${binary_name}[-_]${PLATFORM_VARIANTS}"
           else
-            VARIANT_WITH_NAMES="${binary_name}-${PLATFORM_VARIANTS} ${binary_name}-.*-${PLATFORM_VARIANTS}"
+            VARIANT_WITH_NAMES="${binary_name}[-_]${PLATFORM_VARIANTS} ${binary_name}[-_].*[-_]${PLATFORM_VARIANTS}"
           fi
 
           for NAME_VARIANT in ${VARIANT_WITH_NAMES}; do
             FORMAT_VARIANTS="${NAME_VARIANT} ${NAME_VARIANT}.tar.gz ${NAME_VARIANT}.zip"
 
             for FORMAT_VARIANT in ${FORMAT_VARIANTS}; do
-              TAG_URL=$(echo "${DOWNLOAD_URLS}" | grep "${FORMAT_VARIANT}" | xargs | cut -d ':' -f2,3 | xargs | cut -d ' ' -f1 | xargs)
+              TAG_URL=$(echo "${DOWNLOAD_URLS}" | grep -i "${FORMAT_VARIANT}" | xargs | cut -d ':' -f2,3 | xargs | cut -d ' ' -f1 | xargs)
 
               if [ -z "${TAG_URL}" ]; then
                 continue
@@ -136,7 +137,7 @@ for os_name in ${OS}; do
                 curl -fsSL "${TAG_URL}" | funzip - >"${binary_name}${BINARY_SUFFIX}"
                 ;;
               *)
-                curl -fsSLO "${TAG_URL}"
+                curl -fsSL "${TAG_URL}" -o "${binary_name}"
                 ;;
               esac
 
