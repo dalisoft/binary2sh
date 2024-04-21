@@ -19,7 +19,7 @@ bun add dalisoft/binary2sh
 > Replace `jsona` with your repository
 
 ```sh
-curl -fsSLO https://raw.githubusercontent.com/dalisoft/binary2sh/master/bin-dl.sh | sh /dev/stdin --repository=jsona/jsona --name=jsona
+curl -fsSL https://raw.githubusercontent.com/dalisoft/binary2sh/master/bin-dl.sh | sh /dev/stdin --repository=jsona/jsona --name=jsona
 ```
 
 ## Environment variables
