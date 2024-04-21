@@ -6,6 +6,7 @@ VENDOR=""
 ARCH=""
 LINUX_STD="gnu musl "
 IS_CHMOD_ALLOWED=true
+BINARY_SUFFIX=""
 
 case "$(uname)" in
 Darwin)
@@ -24,6 +25,7 @@ FreeBSD)
   OS="windows windows-msvc win32"
   VENDOR="pc"
   IS_CHMOD_ALLOWED=false
+  BINARY_SUFFIX=".exe"
   ;;
 esac
 
@@ -126,8 +128,11 @@ for os_name in ${OS}; do
               fi
 
               case "${TAG_URL}" in
-              *.tar.gz | *.zip)
-                curl -fsSL "${TAG_URL}" | tar -xzvf - "${binary_name}"
+              *.tar.gz)
+                curl -fsSL "${TAG_URL}" | tar -xzvf - "${binary_name}${BINARY_SUFFIX}"
+                ;;
+              *.zip)
+                curl -fsSL "${TAG_URL}" | funzip - >"${binary_name}${BINARY_SUFFIX}"
                 ;;
               *)
                 curl -fsSLO "${TAG_URL}"
