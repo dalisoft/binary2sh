@@ -1,0 +1,19 @@
+{
+  "name": "binary2sh",
+  "version": "0.0.1",
+  "author": "Davlatjon Shavkatov <opensource@dalisoft.uz>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dalisoft/binary2sh.git"
+  },
+  "bin": "bin-dl.sh",
+  "bugs": {
+    "url": "https://github.com/dalisoft/binary2sh/issues"
+  },
+  "description": "Prepare execution script for linking binaries from other tools/languages",
+  "files": ["bin-dl.sh"],
+  "homepage": "https://github.com/dalisoft/binary2sh#readme",
+  "keywords": ["binary", "remote", "link"],
+  "license": "Apache-2.0",
+  "type": "module"
+}
