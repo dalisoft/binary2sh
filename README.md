@@ -16,10 +16,10 @@ bun add dalisoft/binary2sh
 
 ## No-installation method
 
-> This method not working yet, but soon will be
+> Replace `jsona` with your repository
 
 ```sh
-curl -fsSLO https://raw.githubusercontent.com/dalisoft/binarh2sh/master/bin-dl.sh | sh
+curl -fsSLO https://raw.githubusercontent.com/dalisoft/binary2sh/master/bin-dl.sh | sh /dev/stdin --repository=jsona/jsona --name=jsona
 ```
 
 ## Environment variables
@@ -37,6 +37,8 @@ curl -fsSLO https://raw.githubusercontent.com/dalisoft/binarh2sh/master/bin-dl.s
 | `version`    | Binary version    | No       |
 
 ## Usage
+
+> Replace `jsona` with your repository
 
 ```sh
 bin-dl --repository=jsona/jsona --name=jsona --version=v0.6.0
