@@ -1,5 +1,8 @@
 # binary2sh
 
+> This is `posix shell` version of
+> [binary2npm](https://github.com/dalisoft/binary2npm)
+
 Prepare execution script for linking binaries from other tools/languages
 
 Currently supports only **GitHub API**
