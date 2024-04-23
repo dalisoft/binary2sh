@@ -48,7 +48,7 @@ curl -fsSL https://raw.githubusercontent.com/dalisoft/binary2sh/master/bin-dl.sh
 > Replace `jsona` with your repository
 
 ```sh
-bin-dl --repository=jsona/jsona --name=jsona --version=v0.6.0
+binary2sh --repository=jsona/jsona --name=jsona --version=v0.6.0
 ```
 
 ## License
