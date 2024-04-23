@@ -25,7 +25,7 @@ bun add dalisoft/binary2sh
 npx --yes dalisoft/binary2sh --repository=jsona/jsona --name=jsona
 # or
 bunx dalisoft/binary2sh --repository=jsona/jsona --name=jsona
-#or
+# or
 curl -fsSL https://raw.githubusercontent.com/dalisoft/binary2sh/master/bin-dl.sh | sh /dev/stdin --repository=jsona/jsona --name=jsona
 ```
 
