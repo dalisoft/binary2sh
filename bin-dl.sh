@@ -8,6 +8,14 @@ LINUX_STD="gnu musl "
 IS_CHMOD_ALLOWED=true
 BINARY_SUFFIX=""
 
+# Github API Token
+API_TOKEN=""
+if [ -n "${GH_TOKEN-}" ]; then
+  API_TOKEN="${GH_TOKEN}"
+elif [ -n "${GITHUB_TOKEN-}" ]; then
+  API_TOKEN="${GITHUB_TOKEN}"
+fi
+
 case "$(uname)" in
 Darwin)
   OS="darwin macos"
@@ -71,10 +79,10 @@ while :; do
   shift
 done
 
-if [ -n "${GH_TOKEN-}" ]; then
+if [ -n "${API_TOKEN}" ]; then
   RELEASES=$(curl -sL \
     -H "Accept: application/vnd.github+json" \
-    -H "Authorization: Bearer ${GH_TOKEN-}" \
+    -H "Authorization: Bearer ${API_TOKEN-}" \
     -H "X-GitHub-Api-Version: 2022-11-28" \
     "https://api.github.com/repos/${repository}/releases")
 else
